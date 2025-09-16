@@ -2,8 +2,11 @@ package Sliding_Window;
 import java.util.*;
 public class Question1{
     public static void main(String[] args){
-        int [] arr = {2,1,5,1,3,2};
-        System.out.println(sliding(arr,3));
+        int [] arr = {1,1,1,0,0,0,1,1,1,1,0};
+        String s = "abcabcabc";
+        //System.out.println(longestsubstring(s));
+        //System.out.println(sliding(arr,3));
+        System.out.println(longestSubarraywithones(arr, 2));
     }
     public static int sliding(int [] arr, int k){
         int sum = 0;
@@ -39,7 +42,7 @@ public class Question1{
     public static int longestsubstring(String s){
         int start = 0;
         int max = 0;
-        int curr = 0;
+        
 
         Map<Character,Integer> map = new HashMap<>();
 
@@ -48,12 +51,33 @@ public class Question1{
 
             if(map.containsKey(ch) && start <= map.get(ch)){
                 start = map.get(ch)+1;
-                max = i - start;
             }
             map.put(ch,i);
-            curr++;
-            max = Math.max(curr, max);
+            max = Math.max(max, i-start+1);
 
+        }
+        return max;
+    }
+
+
+    public static int longestSubarraywithones(int [] nums, int k){
+        int left = 0;
+        int i = 0;
+        int zeros = 0;
+        int max = 0;
+        while(i < nums.length){
+            if(nums[i] == 0){
+                zeros++;
+            }
+
+            if(zeros > k){
+                if(nums[left] == 0){
+                    zeros--;
+                }
+                left++;
+            }
+            max = Math.max(max, i-left+1);
+            i++;
         }
         return max;
     }

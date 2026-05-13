@@ -11,7 +11,7 @@ public class District {
             int n = sc.nextInt();
             int [] nums = new int[n+1];
 
-            for(int i = 1; i < n; i++){
+            for(int i = 1; i <= n; i++){
                 nums[i] = sc.nextInt();
             }
             int b = -1;
@@ -23,10 +23,10 @@ public class District {
                 }
             }
             if(b == -1){
-                System.out.println("No");
+                System.out.println("NO");
                 continue;
             }
-            System.out.println("Yes");
+            System.out.println("YES");
 
             for(int i = 2; i <=n; i++){
                 if(nums[i] != nums[1]){
